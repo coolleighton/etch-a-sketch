@@ -1,34 +1,78 @@
+// selectors //
+
 const container = document.querySelector("#container")
 const gridSizeSlider = document.querySelector("#myRange")
-let gridSize = gridSizeSlider.value
+const gridSizeText = document.querySelector("#grid-size-text")
+const clearBtn = document.querySelector("#clearBtn")
+const gridSquares = document.getElementsByClassName("row-item")
+
+// function used to create the sketch pad grid //
 
 function createGrid(gridSize) {
-const fragment = new DocumentFragment();
+    
+    container.innerHTML = ""
 
-let grid = document.createElement("div")
-grid.classList.add("grid")
+    let grid = document.createElement("div")
+    grid.classList.add("grid")
 
-let row = document.createElement("div")
-row.classList.add("row")
+    let row = document.createElement("div")
+    row.classList.add("row")
 
-let rowItem = document.createElement("div")
-rowItem.classList.add("row-item")
-rowItem.style.height = 500/gridSize + "px"
+    let rowItem = document.createElement("div")
+    rowItem.classList.add("row-item")
+    rowItem.style.height = 500/gridSize + "px"
 
-    for (let i = 0; i < gridSize; i++) {
-        fragment.appendChild(rowItem.cloneNode(true))
-    }
+    let fragment = new DocumentFragment()
 
-row.appendChild(fragment)
+        for (let i = 0; i < gridSize; i++) {
+            fragment.appendChild(rowItem.cloneNode(true))
+        }
 
-    for (let i = 0; i < gridSize; i++) {
-        fragment.appendChild(row.cloneNode(true))
-    }
+    row.appendChild(fragment)
 
-grid.appendChild(fragment)
+        for (let i = 0; i < gridSize; i++) {
+            fragment.appendChild(row.cloneNode(true))
+        }
 
-container.appendChild(grid)
+    grid.appendChild(fragment)
+
+    container.appendChild(grid)
+
+    addEventListeners()
 
 }
 
-createGrid(gridSize)
+// Event listeners used to change sketch pad color //
+
+function addEventListeners() {
+
+    const numGridSquares = gridSizeSlider.value * gridSizeSlider.value
+
+    // event listeners to change color to black or rainbow //
+
+    for (var i = 0; i < numGridSquares; i++) {
+        gridSquares[i].addEventListener("mouseover" , function(e) {
+            e.target.style.backgroundColor = "black"
+        })
+    }
+
+    // event listener used to clear pad //
+
+    clearBtn.addEventListener("click", function() {
+        for (var i = 0; i < numGridSquares; i++) {
+            gridSquares[i].style.backgroundColor = "white"
+           
+        }
+    })
+    
+}
+
+// grid size slider input //
+
+gridSizeSlider.oninput = function () {
+    createGrid(gridSizeSlider.value)
+    gridSizeText.textContent = gridSizeSlider.value + " X " + gridSizeSlider.value
+}
+
+createGrid(gridSizeSlider.value)
+
