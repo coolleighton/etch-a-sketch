@@ -1,0 +1,30 @@
+body {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    background-color: grey;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    margin: auto;
+    background-color: rgb(167, 167, 167);
+    height: 500px;
+    width: 500px;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.grid {
+    display: flex;
+}
+
+.row {
+    width: 100%;
+}
+
+.row-item {
+    background-color: white;
+    border: 1px solid black;
+}
