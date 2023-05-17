@@ -1,10 +1,16 @@
-// selectors //
+// selectors and variables //
 
 const container = document.querySelector("#container")
-const gridSizeSlider = document.querySelector("#myRange")
 const gridSizeText = document.querySelector("#grid-size-text")
-const clearBtn = document.querySelector("#clearBtn")
 const gridSquares = document.getElementsByClassName("row-item")
+
+const gridSizeSlider = document.querySelector("#myRange")
+const clearBtn = document.querySelector("#clearBtn")
+const eraserBtn = document.querySelector("#eraserBtn")
+const rainbowBtn = document.querySelector("#rainbowBtn")
+const blackBtn = document.querySelector("#blackBtn")
+
+let penColor = "black"
 
 // function to get the grid side length //
 
@@ -12,33 +18,72 @@ function getGridSize() {
     return gridSizeSlider.value
 }
 
+
 // function to get the number of grid squares //
 
 function getTotalGridSquares() {
     return getGridSize() * getGridSize()
 }
 
-// event listeners used to change color selector to black or rainbow //
 
-function addColorEventListeners() {
+// function used to generate a random color //
 
-    for (var i = 0; i < getTotalGridSquares(); i++) {
+function getRandomColor() {
+
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+
+    return color;
+  }
+
+
+// Event listeners used to change colour on mouseover //
+
+function addBlackEventListeners() {
+
+    for (var i = 0; i < getTotalGridSquares(); i++) 
+    {
         gridSquares[i].addEventListener("mouseover" , function(e) {
             e.target.style.backgroundColor = "black"
         })
     }
 }
 
-// event listener used to clear pad //
+function addRandomColorEventListeners() {
 
-function clearPadEventListener() {
-
-    clearBtn.addEventListener("click", function() {
-        for (var i = 0; i < getTotalGridSquares(); i++) {
-            gridSquares[i].style.backgroundColor = "white"
-        }
-    })
+    for (var i = 0; i < getTotalGridSquares(); i++) 
+    {
+        gridSquares[i].addEventListener("mouseover" , function(e) {
+            e.target.style.backgroundColor = getRandomColor()
+        })
+    }
 }
+
+function addWhiteEventListeners() {
+
+    for (var i = 0; i < getTotalGridSquares(); i++) 
+    {
+        gridSquares[i].addEventListener("mouseover" , function(e) {
+            e.target.style.backgroundColor = "white"
+        })
+    }
+}
+
+// function used to clear pad //
+
+function clearPad() {
+    
+    for (var i = 0; i < getTotalGridSquares(); i++) 
+    {
+        gridSquares[i].style.backgroundColor = "white"
+    }
+}
+
+
 
 // function used to create the sketch pad grid //
 
@@ -72,12 +117,31 @@ function createGrid(gridSize) {
 
     container.appendChild(grid)
 
-    addColorEventListeners()
-    clearPadEventListener()
+    addBlackEventListeners()
 
 }
 
-// function used to create new grid and adjust text on slider input //
+
+// button Event listeners //
+
+blackBtn.addEventListener("click", function() {
+    addBlackEventListeners()
+})
+
+rainbowBtn.addEventListener("click", function() {
+    addRandomColorEventListeners()
+})
+
+eraserBtn.addEventListener("click", function() {
+    addWhiteEventListeners()
+})
+
+clearBtn.addEventListener("click", function() {
+    clearPad()
+})
+
+
+// create new grid and adjust text on slider input //
 
 gridSizeSlider.oninput = function () {
     createGrid(getGridSize())
@@ -85,4 +149,3 @@ gridSizeSlider.oninput = function () {
 }
 
 createGrid(getGridSize())
-
