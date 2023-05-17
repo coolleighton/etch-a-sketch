@@ -1,9 +1,11 @@
 // selectors //
+
 const container = document.querySelector("#container")
 const gridSizeText = document.querySelector("#grid-size-text")
 const gridSquares = document.getElementsByClassName("row-item")
 
 const gridSizeSlider = document.querySelector("#myRange")
+const colorSelector = document.querySelector("#colorSelection")
 const blackBtn = document.querySelector("#blackBtn")
 const rainbowBtn = document.querySelector("#rainbowBtn")
 const eraserBtn = document.querySelector("#eraserBtn")
@@ -14,14 +16,14 @@ const clearBtn = document.querySelector("#clearBtn")
 
 function getGridSize() {
     return gridSizeSlider.value
-}
+};
 
 
 // function to get the number of grid squares //
 
 function getTotalGridSquares() {
     return getGridSize() * getGridSize()
-}
+};
 
 
 // function used to generate a random color //
@@ -36,10 +38,21 @@ function getRandomColor() {
     }
 
     return color;
-  }
+  };
 
 
 // Event listeners used to change colour on mouseover //
+
+function addColorEventListeners() {
+
+    for (var i = 0; i < getTotalGridSquares(); i++) 
+    {
+        gridSquares[i].addEventListener("mouseover" , function(e) {
+            e.target.style.backgroundColor = colorSelector.value
+        })
+    }
+};
+
 
 function addBlackEventListeners() {
 
@@ -49,7 +62,7 @@ function addBlackEventListeners() {
             e.target.style.backgroundColor = "black"
         })
     }
-}
+};
 
 function addRandomColorEventListeners() {
 
@@ -59,7 +72,7 @@ function addRandomColorEventListeners() {
             e.target.style.backgroundColor = getRandomColor()
         })
     }
-}
+};
 
 function addWhiteEventListeners() {
 
@@ -69,7 +82,7 @@ function addWhiteEventListeners() {
             e.target.style.backgroundColor = "white"
         })
     }
-}
+};
 
 // function used to clear pad //
 
@@ -79,7 +92,7 @@ function clearPad() {
     {
         gridSquares[i].style.backgroundColor = "white"
     }
-}
+};
 
 
 
@@ -117,26 +130,30 @@ function createGrid(gridSize) {
 
     addBlackEventListeners()
 
-}
+};
 
 
 // button Event listeners //
 
+colorSelector.addEventListener("input", function() {
+    addColorEventListeners()
+});
+
 blackBtn.addEventListener("click", function() {
     addBlackEventListeners()
-})
+});
 
 rainbowBtn.addEventListener("click", function() {
     addRandomColorEventListeners()
-})
+});
 
 eraserBtn.addEventListener("click", function() {
     addWhiteEventListeners()
-})
+});
 
 clearBtn.addEventListener("click", function() {
     clearPad()
-})
+});
 
 
 // create new grid and adjust text on slider input //
@@ -144,6 +161,6 @@ clearBtn.addEventListener("click", function() {
 gridSizeSlider.oninput = function () {
     createGrid(getGridSize())
     gridSizeText.textContent = getGridSize() + " X " + getGridSize()
-}
+};
 
-createGrid(getGridSize())
+createGrid(getGridSize());

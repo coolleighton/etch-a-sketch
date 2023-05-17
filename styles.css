@@ -17,7 +17,6 @@ h1 {
     padding: 1rem 0;
     color: rgb(255, 255, 255);
     background-color: rgb(43, 43, 43);
-    box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);
     border-radius: 1rem;
     width: 50%;
 }
@@ -37,7 +36,7 @@ h1 {
     margin-right: 5rem;
     border-radius: 1rem;
     background-color: rgb(43, 43, 43);
-    box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);
+    position: relative;
 }
 
 .menu button {
@@ -53,6 +52,33 @@ h1 {
 
 .menu p {
     margin: 0.5rem 0 0.25rem;
+    font-size: 1rem;
+}
+
+.color-text {
+    position: absolute;
+    transform: translate(115px, 7px);
+}
+
+#colorSelection {
+    padding: 0;
+    height: 37.5px;
+    width: 100%;
+    margin: 0.5rem 0;
+ 
+}
+
+input[type="color"] {
+    border: 2px solid white;
+    border-radius: 1rem;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 1rem;
 }
 
 .container {
@@ -61,7 +87,6 @@ h1 {
     width: 500px;
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);
 }
 
 .grid {
