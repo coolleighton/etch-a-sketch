@@ -1,16 +1,14 @@
-// selectors and variables //
-
+// selectors //
 const container = document.querySelector("#container")
 const gridSizeText = document.querySelector("#grid-size-text")
 const gridSquares = document.getElementsByClassName("row-item")
 
 const gridSizeSlider = document.querySelector("#myRange")
-const clearBtn = document.querySelector("#clearBtn")
-const eraserBtn = document.querySelector("#eraserBtn")
-const rainbowBtn = document.querySelector("#rainbowBtn")
 const blackBtn = document.querySelector("#blackBtn")
+const rainbowBtn = document.querySelector("#rainbowBtn")
+const eraserBtn = document.querySelector("#eraserBtn")
+const clearBtn = document.querySelector("#clearBtn")
 
-let penColor = "black"
 
 // function to get the grid side length //
 
