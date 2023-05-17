@@ -6,6 +6,40 @@ const gridSizeText = document.querySelector("#grid-size-text")
 const clearBtn = document.querySelector("#clearBtn")
 const gridSquares = document.getElementsByClassName("row-item")
 
+// function to get the grid side length //
+
+function getGridSize() {
+    return gridSizeSlider.value
+}
+
+// function to get the number of grid squares //
+
+function getTotalGridSquares() {
+    return getGridSize() * getGridSize()
+}
+
+// event listeners used to change color selector to black or rainbow //
+
+function addColorEventListeners() {
+
+    for (var i = 0; i < getTotalGridSquares(); i++) {
+        gridSquares[i].addEventListener("mouseover" , function(e) {
+            e.target.style.backgroundColor = "black"
+        })
+    }
+}
+
+// event listener used to clear pad //
+
+function clearPadEventListener() {
+
+    clearBtn.addEventListener("click", function() {
+        for (var i = 0; i < getTotalGridSquares(); i++) {
+            gridSquares[i].style.backgroundColor = "white"
+        }
+    })
+}
+
 // function used to create the sketch pad grid //
 
 function createGrid(gridSize) {
@@ -20,7 +54,7 @@ function createGrid(gridSize) {
 
     let rowItem = document.createElement("div")
     rowItem.classList.add("row-item")
-    rowItem.style.height = 500/gridSize + "px"
+    rowItem.style.height = 500/getGridSize() + "px"
 
     let fragment = new DocumentFragment()
 
@@ -38,41 +72,17 @@ function createGrid(gridSize) {
 
     container.appendChild(grid)
 
-    addEventListeners()
+    addColorEventListeners()
+    clearPadEventListener()
 
 }
 
-// Event listeners used to change sketch pad color //
-
-function addEventListeners() {
-
-    const numGridSquares = gridSizeSlider.value * gridSizeSlider.value
-
-    // event listeners to change color to black or rainbow //
-
-    for (var i = 0; i < numGridSquares; i++) {
-        gridSquares[i].addEventListener("mouseover" , function(e) {
-            e.target.style.backgroundColor = "black"
-        })
-    }
-
-    // event listener used to clear pad //
-
-    clearBtn.addEventListener("click", function() {
-        for (var i = 0; i < numGridSquares; i++) {
-            gridSquares[i].style.backgroundColor = "white"
-           
-        }
-    })
-    
-}
-
-// grid size slider input //
+// function used to create new grid and adjust text on slider input //
 
 gridSizeSlider.oninput = function () {
-    createGrid(gridSizeSlider.value)
-    gridSizeText.textContent = gridSizeSlider.value + " X " + gridSizeSlider.value
+    createGrid(getGridSize())
+    gridSizeText.textContent = getGridSize() + " X " + getGridSize()
 }
 
-createGrid(gridSizeSlider.value)
+createGrid(getGridSize())
 
