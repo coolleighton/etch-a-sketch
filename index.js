@@ -53,7 +53,6 @@ function addColorEventListeners() {
     }
 };
 
-
 function addBlackEventListeners() {
 
     for (var i = 0; i < getTotalGridSquares(); i++) 
@@ -137,18 +136,30 @@ function createGrid(gridSize) {
 
 colorSelector.addEventListener("input", function() {
     addColorEventListeners()
+    blackBtn.classList.remove("active")
+    rainbowBtn.classList.remove("active")
+    eraserBtn.classList.remove("active")
 });
 
 blackBtn.addEventListener("click", function() {
     addBlackEventListeners()
+    blackBtn.classList.add("active")
+    rainbowBtn.classList.remove("active")
+    eraserBtn.classList.remove("active")
 });
 
-rainbowBtn.addEventListener("click", function() {
+rainbowBtn.addEventListener("click", function(e) {
     addRandomColorEventListeners()
+    rainbowBtn.classList.add("active")
+    eraserBtn.classList.remove("active")
+    blackBtn.classList.remove("active")
 });
 
 eraserBtn.addEventListener("click", function() {
     addWhiteEventListeners()
+    eraserBtn.classList.add("active")
+    rainbowBtn.classList.remove("active")
+    blackBtn.classList.remove("active")
 });
 
 clearBtn.addEventListener("click", function() {
@@ -161,6 +172,9 @@ clearBtn.addEventListener("click", function() {
 gridSizeSlider.oninput = function () {
     createGrid(getGridSize())
     gridSizeText.textContent = getGridSize() + " X " + getGridSize()
+    blackBtn.classList.add("active")
+    rainbowBtn.classList.remove("active")
+    eraserBtn.classList.remove("active")
 };
 
 createGrid(getGridSize());

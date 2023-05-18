@@ -6,7 +6,7 @@ body {
     width: 70%;
     margin: auto;
     text-align: center;
-    background-color: rgb(68, 68, 68);
+    background-color: rgb(220, 222, 252);
     color: white;
     font-family: 'Roboto', sans-serif;
 }
@@ -16,9 +16,9 @@ h1 {
     margin: 2rem auto;
     padding: 1rem 0;
     color: rgb(255, 255, 255);
-    background-color: rgb(43, 43, 43);
+    background-color: rgb(51, 88, 255);
     border-radius: 1rem;
-    width: 50%;
+    width: 1000px;
 }
 
 .app {
@@ -35,11 +35,11 @@ h1 {
     padding: 2rem;
     margin-right: 5rem;
     border-radius: 1rem;
-    background-color: rgb(43, 43, 43);
+    background-color: rgb(51, 88, 255);
     position: relative;
 }
 
-.menu button {
+.menu-button {
     color: white;
     background-color: transparent;
     border: 2px solid white;
@@ -48,6 +48,42 @@ h1 {
     font-size: 1rem;
     border-radius: 1rem;
     cursor: pointer;
+}
+
+#colorSelection {
+    padding: 0;
+    height: 37.5px;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+input[type="color"] {
+    border: 2px solid white;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+
+}
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 1rem;
+}
+
+input[type="color"]:hover,
+.menu-button:hover {
+    scale: 1.05;
+    transition: 0.3s;
+}
+
+input[type="range"] {
+    cursor: pointer;
+}
+
+.active {
+    color: rgb(43, 43, 43);
+    background-color: rgb(255, 255, 255);
 }
 
 .menu p {
@@ -60,29 +96,8 @@ h1 {
     transform: translate(115px, 7px);
 }
 
-#colorSelection {
-    padding: 0;
-    height: 37.5px;
-    width: 100%;
-    margin: 0.5rem 0;
- 
-}
-
-input[type="color"] {
-    border: 2px solid white;
-    border-radius: 1rem;
-}
-input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
-
-}
-input[type="color"]::-webkit-color-swatch {
-    border: none;
-    border-radius: 1rem;
-}
-
 .container {
-    background-color: rgb(43, 43, 43);
+    background-color: rgb(51, 88, 255);
     height: 500px;
     width: 500px;
     padding: 2rem;
